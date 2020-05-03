@@ -1,0 +1,42 @@
+.pageMenu {
+    background: linear-gradient(25deg, white, rgb(160, 190, 175));
+    height: 75px;
+}
+
+.menuAuth {
+    text-align: right;
+    padding: 10px 20px;
+}
+
+.menuAuth a {
+    color: white;
+    text-decoration: none;
+    background: rgb(49, 118, 83);
+    padding: 3px 5px 3px 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.menuBar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.menuBar a {
+    color: rgb(72, 72, 72);
+    text-decoration: none;
+    background: rgb(230, 230, 230);
+    margin: 5px 20px 5px 20px;
+    padding: 3px 5px 3px 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+a:hover {
+    box-shadow: 0 0 12px 0 rgba(128,128,128,1);
+}
+
+.active {
+    box-shadow: 0 0 12px 0 rgb(37, 71, 24);
+}
