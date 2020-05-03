@@ -14,7 +14,7 @@ function App() {
                 <Route path="/auth" component={Auth}/>
                 <Route path="/callboard" component={CallBoard}/>
                 <Route path="/notes" component={Notes}/>
-                <Route exect={"true"} path="/" component={CardHolder}/>
+                <Route path="/" component={CardHolder}/>
             </Switch>
         </div>
 

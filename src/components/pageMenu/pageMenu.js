@@ -13,9 +13,9 @@ class PageMenu extends Component {
                     <NavLink to="/auth">Авторизация</NavLink>
                 </div>
                 <div className={classes.menuBar}>
-                    <NavLink to="/callboard" activeClassName={classes.active}>Доска обьявлений</NavLink>
-                    <NavLink exect={"true"} to="/" activeClassName={classes.active}>Список участников</NavLink>
-                    <NavLink to="/notes" activeClassName={classes.active}>Мои заметки</NavLink>
+                    <NavLink to="/callboard" activeClassName={classes.activeButton}>Доска обьявлений</NavLink>
+                    <NavLink exect={"true"} to="/" activeClassName={classes.activeButton}>Список участников</NavLink>
+                    <NavLink to="/notes" activeClassName={classes.activeButton}>Мои заметки</NavLink>
                 </div>
             </div>
         )
