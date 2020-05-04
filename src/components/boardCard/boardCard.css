@@ -1,0 +1,27 @@
+.boardCard {
+    margin-top: 50px;
+    max-width: 600px;
+    min-width: 400px;
+    min-height: 400px;
+    background: rgba(120, 160, 80, .25);
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+}
+
+
+
+.boardCard p {
+    font-weight: bold;
+}
+
+.boardCard input {
+    margin-bottom: 20px;
+}
+
+.boardCard button {
+    margin: 15px;
+    padding: 10px;
+    background: rgba(120, 160, 80, .5);
+    border: 1px solid white;
+    border-radius: 10px;
+}

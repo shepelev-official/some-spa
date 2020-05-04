@@ -1,0 +1,9 @@
+.Notes {
+    text-align: center;
+}
+
+.notesArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

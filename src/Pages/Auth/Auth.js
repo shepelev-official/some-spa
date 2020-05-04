@@ -26,7 +26,7 @@ class Auth extends Component {
                         <input id={this.keyLogin} type="text"/>
 
                         <label htmlFor={this.keyPass}>Введите пароль:</label>
-                        <input id={this.keyPass} type="pass"/>
+                        <input id={this.keyPass} type="password"/>
                         <div className={classes.Buttons}>
                             <button
                                 type="enter"

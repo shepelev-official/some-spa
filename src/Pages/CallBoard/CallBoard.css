@@ -1,0 +1,9 @@
+.callBoard {
+    text-align: center;
+}
+
+.boardHolder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
