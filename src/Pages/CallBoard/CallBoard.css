@@ -2,13 +2,19 @@
     text-align: center;
 }
 
-.boardHolder {
+.addFormBoardCard {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.boardHolder button {
+.boardHolder {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.callBoard button {
     width: 150px;
     padding: 5px;
     border-radius: 5px;
@@ -18,6 +24,6 @@
     outline: none;
 }
 
-.boardHolder button:hover {
+.callBoard button:hover {
     box-shadow: 0 0 12px 0 rgba(128,128,128,1);
 }

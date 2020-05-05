@@ -16,15 +16,9 @@ class CallBoard extends Component {
                 image: `${img}`,
                 note: ' Этот подход хорош, потому что все ресурсы обрабатываются системой сборки и получат имена файлов с хэшами в производственной сборке. Вы также получите сообщение об ошибке, если файл был перемещен или удален. Недостатком является то, что это может быть громоздким, если у вас есть сотни изображений, потому что вы не можете иметь произвольные пути импорта.',
                 persone: 'ME'
-            },
-            {
-                image: 'Image',
-                note: 'Lorem ipsum parabelum',
-                persone: 'ME'}
+            }
         ]
     }
-
-
 
 
     createBoardCard = () => {
@@ -33,19 +27,22 @@ class CallBoard extends Component {
         })
     }
 
-    addNewBoardCard = () => {
-        const stateCopy = {
+    addNewBoardCard = (img, note) => {
+        let stateCopy = {
             createBoardCard: !this.state.createBoardCard,
             boardCard: this.state.boardCard.concat()
         }
         stateCopy.boardCard.push({
-            image: 'sgagadfgadg',
-            note: 'asdgasgasdgfas',
-            persone: 'asdgsagasdf'
+            image: img,
+            note: note,
+            persone: 'mememe'
         })
-        this.setState({
-            stateCopy
-        })
+
+        return (
+            this.setState(
+                stateCopy
+            )
+        )
     }
 
 
@@ -62,9 +59,9 @@ class CallBoard extends Component {
             <div className={classes.callBoard}>
                 <PageMenu/>
                 <h1>Доска объявлений</h1>
-                <div className={classes.boardHolder}>
 
-                    <button onClick={this.createBoardCard}>{buttonName}</button>
+                <div className={classes.addFormBoardCard}>
+                    <button type="button" onClick={this.createBoardCard}>{buttonName}</button>
 
                     {this.state.createBoardCard
                         ? <AddBoardCard
@@ -72,6 +69,9 @@ class CallBoard extends Component {
                         />
                         : null
                     }
+                </div>
+
+                <div className={classes.boardHolder}>
 
                     {this.state.boardCard.map((card, index) => {
                         return (
