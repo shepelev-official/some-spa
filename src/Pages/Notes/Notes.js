@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PageMenu from "../../components/pageMenu/pageMenu";
 import classes from "./Notes.css"
-import BoardCard from "../../components/boardCard/boardCard";
+import BoardCard from "../../components/boardCard/addBboardCard";
 
 class Notes extends Component {
     render() {
