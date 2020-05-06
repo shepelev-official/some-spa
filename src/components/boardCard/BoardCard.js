@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from "./BoardCard.css"
+import {NavLink} from "react-router-dom";
 
 function BoardCard(props) {
 
@@ -11,9 +12,7 @@ function BoardCard(props) {
 
                 <p>{props.note}</p>
             </div>
-            <div className={classes.cardCreator}>
-                {props.persone}
-            </div>
+            <p className={classes.cardCreatorName}><NavLink to="/" /*props.persone.id*/>{props.persone}</NavLink></p>
         </div>
     );
 }
