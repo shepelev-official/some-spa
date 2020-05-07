@@ -5,3 +5,10 @@
     align-items: center;
     align-content: space-around;
 }
+
+.homePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
