@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import classes from './App.css';
 import {Route, Switch} from "react-router-dom"
 import CardHolder from "./Pages/cardHolder/cardHolder";
@@ -8,16 +8,19 @@ import Notes from "./Pages/Notes/Notes";
 import PageMenu from "./components/pageMenu/pageMenu";
 
 
-class App extends Component {
+const App = () => {
 
-    state={
-        isAuth: true,
+    const [isAuth, setIsAuth] = useState(true)
+
+    const isAuthToggle = () => {
+        setIsAuth(!isAuth)
+        console.log(isAuth)
     }
 
-    render () {
+
         return (
             <div className={classes.App}>
-                <PageMenu isAuth={this.state.isAuth}/>
+                <PageMenu isAuth={isAuth} isAuthTrigger={isAuthToggle}/>
                 <Switch>
                     <Route path="/auth" component={Auth}/>
                     <Route path="/callboard" component={CallBoard}/>
@@ -26,7 +29,6 @@ class App extends Component {
                 </Switch>
             </div>
         );
-    }
 }
 
 export default App;

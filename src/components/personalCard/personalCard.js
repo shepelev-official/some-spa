@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./personalCard.css"
 
-function PersonalCard(props) {
+const PersonalCard = (props) => {
     return (
         <div className={classes.personalCard}>
             <img src={props.Photo} alt="Изображение не найдено"/>

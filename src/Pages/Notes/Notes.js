@@ -1,18 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import classes from "./Notes.css"
-import BoardCard from "../../components/boardCard/addBboardCard";
+import BoardCard from "../../components/boardCard/BoardCard";
 
-class Notes extends Component {
-    render() {
-        return (
-            <div className={classes.Notes}>
-                <h1>Мои Заметки</h1>
-                <div className={classes.notesArea}>
-                    <BoardCard />
-                </div>
+const Notes = () => {
+    return (
+        <div className={classes.Notes}>
+            <h1>Мои Заметки</h1>
+            <div className={classes.notesArea}>
+                <BoardCard/>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default Notes;
