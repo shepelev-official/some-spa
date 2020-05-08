@@ -10,7 +10,7 @@ const PageMenu = (props) => {
             ? <div className={classes.pageMenu}>
                 <div className={classes.menuAuth}>
 
-                    <button onClick={props.isAuthTrigger}>isAuthTrigger</button> {/*ПОТОМ НАДО УДАЛИТЬ ИМИТАЦИЯ ВХОДА*/}
+                    <button onClick={props.isAuthToggle}>isAuthToggle</button> {/*ПОТОМ НАДО УДАЛИТЬ ИМИТАЦИЯ ВХОДА*/}
 
                     <NavLink to="/">Выйти</NavLink> {/*надо добавить событие на изменение состояния isAuth*/}
                 </div>
@@ -25,7 +25,7 @@ const PageMenu = (props) => {
             : <div className={classes.pageMenu}>
                 <div className={classes.menuAuth}>
 
-                    <button onClick={props.isAuthTrigger}>isAuthTrigger</button> {/*ПОТОМ НАДО УДАЛИТЬ ИМИТАЦИЯ ВХОДА*/}
+                    <button onClick={props.isAuthToggle}>isAuthToggle</button> {/*ПОТОМ НАДО УДАЛИТЬ ИМИТАЦИЯ ВХОДА*/}
 
                     <NavLink to="/auth">Авторизация</NavLink>
                 </div>

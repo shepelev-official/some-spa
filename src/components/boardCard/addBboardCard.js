@@ -3,7 +3,7 @@ import classes from "./addBoardCard.css"
 
 const AddBoardCard = (props) => {
 
-    const [text, setText] = useState("text")
+    const [text, setText] = useState("")
 
     const handleSubmit = (event) => {
         event.preventDefault()

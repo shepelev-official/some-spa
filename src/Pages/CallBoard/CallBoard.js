@@ -8,8 +8,8 @@ import AddBoardCard from "../../components/boardCard/addBboardCard";
 const CallBoard = () => {
 
 
-    const [createBoardCard, createBoardCardFunc] = useState(false)
-    const [boardCard, addNewBoardCardFunc] = useState([
+    const [createBoardCard, setCreateBoardCard] = useState(false)
+    const [boardCard, setAddNewBoardCard] = useState([
         {
             note: ' Этот подход хорош, потому что все ресурсы обрабатываются системой сборки и получат имена файлов с хэшами в производственной сборке. Вы также получите сообщение об ошибке, если файл был перемещен или удален. Недостатком является то, что это может быть громоздким, если у вас есть сотни изображений, потому что вы не можете иметь произвольные пути импорта.',
             persone: 'ME'
@@ -17,19 +17,19 @@ const CallBoard = () => {
     )
 
 
-    const reverseButtonFlag = () => {
-        createBoardCardFunc(!createBoardCard)
+    const reverseButtonHandler = () => {
+        setCreateBoardCard(!createBoardCard)
     }
 
 
-    const addNewBoardCard = (note) => {
+    const addNewBoardCardHandler = (note) => {
         const stateBoardCardCopy = [...boardCard, {
             note: note,
             persone: 'mememe'
         }]
 
-        createBoardCardFunc(!createBoardCard)
-        addNewBoardCardFunc(stateBoardCardCopy)
+        setCreateBoardCard(!createBoardCard)
+        setAddNewBoardCard(stateBoardCardCopy)
     }
 
 
@@ -45,11 +45,11 @@ const CallBoard = () => {
             <h1>Доска объявлений</h1>
 
             <div className={classes.addFormBoardCard}>
-                <button type="button" onClick={reverseButtonFlag}>{buttonName}</button>
+                <button type="button" onClick={reverseButtonHandler}>{buttonName}</button>
 
                 {createBoardCard
                     ? <AddBoardCard
-                        addNewBoardCard={addNewBoardCard}
+                        addNewBoardCard={addNewBoardCardHandler}
                     />
                     : null
                 }

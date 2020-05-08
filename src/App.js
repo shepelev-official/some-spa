@@ -14,13 +14,12 @@ const App = () => {
 
     const isAuthToggle = () => {
         setIsAuth(!isAuth)
-        console.log(isAuth)
     }
 
 
         return (
             <div className={classes.App}>
-                <PageMenu isAuth={isAuth} isAuthTrigger={isAuthToggle}/>
+                <PageMenu isAuth={isAuth} isAuthToggle={isAuthToggle}/>
                 <Switch>
                     <Route path="/auth" component={Auth}/>
                     <Route path="/callboard" component={CallBoard}/>

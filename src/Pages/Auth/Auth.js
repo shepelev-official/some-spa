@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 
 const Auth = () => {
 
-    let submitHendler = (event) => {
+    let submitHandler = (event) => {
         event.preventDefault()
     }
 
@@ -20,7 +20,7 @@ const Auth = () => {
                 </div>
                 <h1>Авторизация</h1>
 
-                <form onSubmit={submitHendler} className={classes.AuthForm}>
+                <form onSubmit={submitHandler} className={classes.AuthForm}>
                     <label htmlFor={keyLogin}>Введите E-mail:</label>
                     <input id={keyLogin} type="text"/>
 
