@@ -10,10 +10,32 @@ import PageMenu from "./components/pageMenu/pageMenu";
 
 const App = () => {
 
-    const [isAuth, setIsAuth] = useState(true)
+    const [isAuth, setIsAuth] = useState(false)
 
     const isAuthToggle = () => {
         setIsAuth(!isAuth)
+    }
+
+    const isAuthCallBoard = () => {
+        return (
+            isAuth
+                ? <CallBoard />
+                : <CardHolder />
+        )
+    }
+
+    const isAuthNotes = () => {
+        return (
+            isAuth
+                ? <Notes />
+                : <CardHolder />
+        )
+    }
+
+    const isAuthCardHolder = () => {
+        return (
+            <CardHolder isAuth={isAuth} />
+        )
     }
 
 
@@ -22,9 +44,9 @@ const App = () => {
                 <PageMenu isAuth={isAuth} isAuthToggle={isAuthToggle}/>
                 <Switch>
                     <Route path="/auth" component={Auth}/>
-                    <Route path="/callboard" component={CallBoard}/>
-                    <Route path="/notes" component={Notes}/>
-                    <Route path="/" component={CardHolder}/>
+                    <Route path="/callboard" component={isAuthCallBoard}/>
+                    <Route path="/notes" component={isAuthNotes}/>
+                    <Route path="/" component={isAuthCardHolder}/>
                 </Switch>
             </div>
         );

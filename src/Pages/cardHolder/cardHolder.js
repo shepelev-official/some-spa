@@ -3,9 +3,9 @@ import classes from "./cardHolder.css";
 import PersonalCard from "../../components/personalCard/personalCard";
 import imgsss from "../../photo.jpeg"
 
-const CardHolder = () => {
+const CardHolder = (props) => {
 
-    const [isAuth, ] = useState(true)
+    const [isAuth, ] = useState(props.isAuth)
     const [personalCard, ] = useState([
         {
             cardPhoto: `${imgsss}`,
