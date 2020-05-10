@@ -51,6 +51,10 @@
     outline: none;
 }
 
+.Buttons button:disabled {
+    background: #bdbdbd;
+}
+
 .Buttons :hover {
     box-shadow: 0 0 12px 0 rgba(128,128,128,1);
 }
@@ -79,3 +83,14 @@
     padding: 3px 7px;
     color: white;
 }
+
+input:focus {
+    outline: none;
+}
+
+
+.red {
+    box-shadow: 0 0 12px 0 rgb(255, 0, 0);
+}
+
+.transparent {}
