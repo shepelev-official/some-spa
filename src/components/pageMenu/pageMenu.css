@@ -9,13 +9,17 @@
     margin-bottom: 35px;
 }
 
+.menuAuth button {
+    background: rgb(49, 118, 83);
+    padding: 6px 10px 6px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
 .menuAuth a {
     color: white;
     text-decoration: none;
-    background: rgb(49, 118, 83);
-    padding: 3px 5px 3px 5px;
-    border: 1px solid black;
-    border-radius: 5px;
+    font-weight: bold;
 }
 
 .menuBar {

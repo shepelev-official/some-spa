@@ -90,7 +90,7 @@ input:focus {
 
 
 .red {
-    box-shadow: 0 0 12px 0 rgb(255, 0, 0);
+    border: 2px solid red;
 }
 
 .transparent {}
