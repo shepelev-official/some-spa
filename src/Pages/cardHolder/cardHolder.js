@@ -1,25 +1,18 @@
 import React, { useState} from "react";
 import classes from "./cardHolder.css";
 import PersonalCard from "../../components/personalCard/personalCard";
-import imgsss from "../../photo.jpeg"
+
 
 const CardHolder = (props) => {
 
     const [isAuth, ] = useState(props.isAuth)
     const [personalCard, ] = useState([
         {
-            cardPhoto: `${imgsss}`,
-            cardName: 'Valentin',
-            cardSurname: 'Shepelev',
-            cardTelephoneNumber: '89259256281'
+            cardEmail: 'Valentin',
         },
-        {
-            cardName: 'Dmitry',
-            cardSurname: 'Shepelev',
-            cardTelephoneNumber: 'nan',
-            cardPhoto: 'photo'
-        }
     ])
+
+
 
     return (
         <div>
@@ -35,10 +28,7 @@ const CardHolder = (props) => {
                             return (
                                 <PersonalCard
                                     key={index}
-                                    Name={card.cardName}
-                                    Surname={card.cardSurname}
-                                    TelephoneNumber={card.cardTelephoneNumber}
-                                    Photo={card.cardPhoto}
+                                    Email={card.cardEmail}
                                     isAuth={isAuth}
                                 />
                             )

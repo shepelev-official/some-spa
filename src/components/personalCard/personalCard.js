@@ -4,12 +4,9 @@ import classes from "./personalCard.css"
 const PersonalCard = (props) => {
     return (
         <div className={classes.personalCard}>
-            <img src={props.Photo} alt="Изображение не найдено"/>
             {
                 props.isAuth ? <div className={classes.personalCardData}>
-                        <p>{props.Name}</p>
-                        <p>{props.Surname}</p>
-                        <p>{props.TelephoneNumber}</p>
+                        <p>{props.Email}</p>
                     </div>
                     : null
             }

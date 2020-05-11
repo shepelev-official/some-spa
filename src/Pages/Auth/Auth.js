@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import classes from "./Auth.css";
 import {NavLink} from "react-router-dom";
 import is from "is_js"
+import axios from "axios"
 
 const Auth = () => {
 
@@ -32,6 +33,36 @@ const Auth = () => {
 
   const isFormValid = isLoginValid && isPasswordValid
 
+  const loginHandler = async () => {
+    const loginData = {
+      email: login,
+      password: password,
+      returnSecureToken: true
+    }
+    try {
+      const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyALc3IJ5EUuz0HEBSvTYMqlj8mL-14rKJw', loginData)
+
+      console.log(response.data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const registerHandler = async () => {
+    const authData = {
+      email: login,
+      password: password,
+      returnSecureToken: true
+    }
+    try {
+      const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyALc3IJ5EUuz0HEBSvTYMqlj8mL-14rKJw', authData)
+
+      console.log(response.data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
 
   return (
     <div className={classes.Auth}>
@@ -54,6 +85,7 @@ const Auth = () => {
               type="enter"
               className={classes.enterButton}
               disabled={!isFormValid}
+              onClick={loginHandler}
             >
               Войти
             </button>
@@ -63,6 +95,7 @@ const Auth = () => {
               type="register"
               className={classes.registerButton}
               disabled={!isFormValid}
+              onClick={registerHandler}
             >
               Регистрация
             </button>
