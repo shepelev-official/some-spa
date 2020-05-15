@@ -18,7 +18,6 @@ const PageMenu = (props) => {
           <NavLink to="/callboard" activeClassName={classes.activeButton}>Доска обьявлений</NavLink>
           <NavLink exect={"true"} to="/" activeClassName={classes.activeButton}>Список
             участников</NavLink>
-          <NavLink to="/notes" activeClassName={classes.activeButton}>Мои заметки</NavLink>
         </div>
       </div>
       : <div className={classes.pageMenu}>

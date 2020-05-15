@@ -1,74 +1,96 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./CallBoard.css";
 import BoardCard from "../../components/boardCard/BoardCard";
 import AddBoardCard from "../../components/boardCard/addBboardCard";
-
+import axios from "axios";
 
 
 const CallBoard = () => {
 
 
-    const [createBoardCard, setCreateBoardCard] = useState(false)
-    const [boardCard, setAddNewBoardCard] = useState([
-        {
-            note: ' Этот подход хорош, потому что все ресурсы обрабатываются системой сборки и получат имена файлов с хэшами в производственной сборке. Вы также получите сообщение об ошибке, если файл был перемещен или удален. Недостатком является то, что это может быть громоздким, если у вас есть сотни изображений, потому что вы не можете иметь произвольные пути импорта.',
-            persone: 'ME'
-        }]
-    )
+  const [createBoardCard, setCreateBoardCard] = useState(false)
+  const [boardCard, setAddNewBoardCard] = useState([])
 
 
-    const reverseButtonHandler = () => {
-        setCreateBoardCard(!createBoardCard)
+  const reverseButtonHandler = () => {
+    setCreateBoardCard(!createBoardCard)
+  }
+
+
+  const addNewBoardCardHandler = async note => {
+    const newCard = {
+      note: note,
+      persone: 'mememe'
     }
 
+    const stateBoardCardCopy = [...boardCard, newCard]
 
-    const addNewBoardCardHandler = (note) => {
-        const stateBoardCardCopy = [...boardCard, {
-            note: note,
-            persone: 'mememe'
-        }]
+    setCreateBoardCard(!createBoardCard)
+    setAddNewBoardCard(stateBoardCardCopy)
 
-        setCreateBoardCard(!createBoardCard)
-        setAddNewBoardCard(stateBoardCardCopy)
+    try {
+      await axios.post('https://some-spa.firebaseio.com/callboard.json', newCard)
+    } catch (e) {
+      console.log(e)
     }
+  }
 
 
-    let buttonName
-    if (createBoardCard === false) {
-        buttonName = "Добавить объявление"
-    } else {
-        buttonName = "Скрыть"
+  let buttonName
+  if (createBoardCard === false) {
+    buttonName = "Добавить объявление"
+  } else {
+    buttonName = "Скрыть"
+  }
+
+  useEffect(() => {
+      const getDataFromServer = async () => {
+        try {
+          const response = await axios.get('https://some-spa.firebaseio.com/callboard.json')
+          const cardInState = Object.keys(response.data).map((key, index) => {
+            let cardNumber = index + 1
+            return {...response.data[`${key}`], cardNumber}
+          })
+          setAddNewBoardCard(cardInState)
+
+        } catch
+          (e) {
+          console.log(e)
+        }
+      }
+      getDataFromServer()
     }
+    , []
+  )
+  return (
+    <div className={classes.callBoard}>
+      <h1>Доска объявлений</h1>
 
-    return (
-        <div className={classes.callBoard}>
-            <h1>Доска объявлений</h1>
+      <div className={classes.addFormBoardCard}>
+        <button type="button" onClick={reverseButtonHandler}>{buttonName}</button>
 
-            <div className={classes.addFormBoardCard}>
-                <button type="button" onClick={reverseButtonHandler}>{buttonName}</button>
+        {createBoardCard
+          ? <AddBoardCard
+            addNewBoardCard={addNewBoardCardHandler}
+          />
+          : null
+        }
+      </div>
 
-                {createBoardCard
-                    ? <AddBoardCard
-                        addNewBoardCard={addNewBoardCardHandler}
-                    />
-                    : null
-                }
-            </div>
+      <div className={classes.boardHolder}>
 
-            <div className={classes.boardHolder}>
-
-                {boardCard.map((card, index) => {
-                    return (
-                        <BoardCard
-                            key={index}
-                            note={card.note}
-                            persone={card.persone}
-                        />
-                    )
-                })}
-            </div>
-        </div>
-    );
+        {boardCard.map((card, index) => {
+          return (
+            <BoardCard
+              key={index}
+              note={card.note}
+              persone={card.persone}
+            />
+          )
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default CallBoard;
