@@ -5,7 +5,7 @@ import AddBoardCard from "../../components/boardCard/addBboardCard";
 import axios from "axios";
 
 
-const CallBoard = () => {
+const CallBoard = (props) => {
 
 
   const [createBoardCard, setCreateBoardCard] = useState(false)
@@ -16,11 +16,10 @@ const CallBoard = () => {
     setCreateBoardCard(!createBoardCard)
   }
 
-
   const addNewBoardCardHandler = async note => {
     const newCard = {
       note: note,
-      persone: 'mememe'
+      persone: props.getCurrentUser()
     }
 
     const stateBoardCardCopy = [...boardCard, newCard]
@@ -62,6 +61,8 @@ const CallBoard = () => {
     }
     , []
   )
+
+
   return (
     <div className={classes.callBoard}>
       <h1>Доска объявлений</h1>

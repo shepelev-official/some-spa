@@ -16,11 +16,13 @@ const App = () => {
     if (value !== undefined) {
       setCurrentUser(value.email)
     }
+      return currentUser
   }
 
   const authWithCurrenUser = () => {
     return <Auth getCurrentUser={getCurrentUser}/>
   }
+
 
   const isAuthToggle = () => {
     setIsAuth(!isAuth)
@@ -29,7 +31,7 @@ const App = () => {
   const isAuthCallBoard = () => {
     return (
       isAuth
-        ? <CallBoard/>
+        ? <CallBoard getCurrentUser={getCurrentUser}/>
         : <CardHolder/>
     )
   }
