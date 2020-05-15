@@ -9,38 +9,48 @@ import PageMenu from "./components/pageMenu/pageMenu";
 
 const App = () => {
 
-    const [isAuth, setIsAuth] = useState(false)
+  const [isAuth, setIsAuth] = useState(false)
+  const [currentUser, setCurrentUser] = useState()
 
-    const isAuthToggle = () => {
-        setIsAuth(!isAuth)
+  const getCurrentUser = (value) => {
+    if (value !== undefined) {
+      setCurrentUser(value.email)
     }
+  }
 
-    const isAuthCallBoard = () => {
-        return (
-            isAuth
-                ? <CallBoard />
-                : <CardHolder />
-        )
-    }
+  const authWithCurrenUser = () => {
+    return <Auth getCurrentUser={getCurrentUser}/>
+  }
+
+  const isAuthToggle = () => {
+    setIsAuth(!isAuth)
+  }
+
+  const isAuthCallBoard = () => {
+    return (
+      isAuth
+        ? <CallBoard/>
+        : <CardHolder/>
+    )
+  }
 
 
-    const isAuthCardHolder = () => {
-        return (
-            <CardHolder isAuth={isAuth} />
-        )
-    }
+  const isAuthCardHolder = () => {
+    return (
+      <CardHolder isAuth={isAuth} currentUser={currentUser}/>
+    )
+  }
 
-
-        return (
-            <div className={classes.App}>
-                <PageMenu isAuth={isAuth} isAuthToggle={isAuthToggle}/>
-                <Switch>
-                    <Route path="/auth" component={Auth}/>
-                    <Route path="/callboard" component={isAuthCallBoard}/>
-                    <Route path="/" component={isAuthCardHolder}/>
-                </Switch>
-            </div>
-        );
+  return (
+    <div className={classes.App}>
+      <PageMenu isAuth={isAuth} isAuthToggle={isAuthToggle}/>
+      <Switch>
+        <Route path="/auth" component={authWithCurrenUser}/>
+        <Route path="/callboard" component={isAuthCallBoard}/>
+        <Route path="/" component={isAuthCardHolder}/>
+      </Switch>
+    </div>
+  );
 }
 
 export default App;

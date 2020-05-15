@@ -1,17 +1,30 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import classes from "./cardHolder.css";
 import PersonalCard from "../../components/personalCard/personalCard";
+import axios from "axios";
 
 
 const CardHolder = (props) => {
 
   const [isAuth,] = useState(props.isAuth)
-  const [personalCard,] = useState([
-    {
-      cardEmail: 'Valentin',
-    },
-  ])
+  const [personalCard, setPersonalCard] = useState([])
 
+  useEffect(() => {
+    const initialState = async () => {
+      try {
+        const response = await axios.get('https://some-spa.firebaseio.com/users.json')
+        const personalCards = Object.keys(response.data).map((key) => {
+          return  response.data[`${key}`]
+        })
+        setPersonalCard(personalCards)
+      } catch (e) {
+        console.log(e)
+      }
+
+    }
+    initialState()
+
+  }, [])
 
   return (
     <div>
@@ -27,7 +40,7 @@ const CardHolder = (props) => {
               return (
                 <PersonalCard
                   key={index}
-                  Email={card.cardEmail}
+                  Email={card.email}
                   isAuth={isAuth}
                 />
               )

@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import is from "is_js"
 import axios from "axios"
 
-const Auth = () => {
+const Auth = (props) => {
 
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
@@ -33,6 +33,8 @@ const Auth = () => {
 
   const isFormValid = isLoginValid && isPasswordValid
 
+  let currentUser = ""
+
   const loginHandler = async () => {
     const loginData = {
       email: login,
@@ -42,11 +44,15 @@ const Auth = () => {
     try {
       const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyALc3IJ5EUuz0HEBSvTYMqlj8mL-14rKJw', loginData)
 
-      console.log(response.data)
+      currentUser = {email: response.data.email}
+      props.getCurrentUser(currentUser)
     } catch (e) {
       console.log(e)
     }
   }
+
+
+  let addNewUserInBase = ""
 
   const registerHandler = async () => {
     const authData = {
@@ -57,7 +63,8 @@ const Auth = () => {
     try {
       const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyALc3IJ5EUuz0HEBSvTYMqlj8mL-14rKJw', authData)
 
-      console.log(response.data)
+      addNewUserInBase = {email: response.data.email}
+      await axios.post('https://some-spa.firebaseio.com/users.json', addNewUserInBase)
     } catch (e) {
       console.log(e)
     }
