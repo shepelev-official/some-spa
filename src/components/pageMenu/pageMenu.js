@@ -23,7 +23,7 @@ const PageMenu = (props) => {
       : <div className={classes.pageMenu}>
         <div className={classes.menuAuth}>
 
-          <button onClick={props.isAuthToggle}>  {/*ПОТОМ НАДО УДАЛИТЬ СОБЫТИЕ*/}
+          <button /*onClick={props.isAuthToggle}*/>  {/*ПОТОМ НАДО УДАЛИТЬ СОБЫТИЕ*/}
 
             <NavLink to="/auth">Авторизация</NavLink>
           </button>

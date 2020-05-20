@@ -15,12 +15,13 @@ const App = () => {
   const getCurrentUser = (value) => {
     if (value !== undefined) {
       setCurrentUser(value.email)
+      setIsAuth(true)
     }
       return currentUser
   }
 
   const authWithCurrenUser = () => {
-    return <Auth getCurrentUser={getCurrentUser}/>
+    return <Auth getCurrentUser={getCurrentUser} isAuth={isAuth} currentUser={currentUser}/>
   }
 
 
@@ -42,6 +43,7 @@ const App = () => {
       <CardHolder isAuth={isAuth} currentUser={currentUser}/>
     )
   }
+
 
   return (
     <div className={classes.App}>

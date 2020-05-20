@@ -56,7 +56,7 @@
 }
 
 .Buttons :hover {
-    box-shadow: 0 0 12px 0 rgba(128,128,128,1);
+    box-shadow: 0 0 12px 0 rgba(128, 128, 128, 1);
 }
 
 .enterButton {
@@ -93,4 +93,11 @@ input:focus {
     border: 2px solid red;
 }
 
-.transparent {}
+.transparent {
+}
+
+.authSuccess {
+    padding-top: 90px;
+    text-align: center;
+    font-weight: bold;
+}

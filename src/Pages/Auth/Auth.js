@@ -33,7 +33,6 @@ const Auth = (props) => {
 
   const isFormValid = isLoginValid && isPasswordValid
 
-  let currentUser = ""
 
   const loginHandler = async () => {
     const loginData = {
@@ -44,15 +43,16 @@ const Auth = (props) => {
     try {
       const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyALc3IJ5EUuz0HEBSvTYMqlj8mL-14rKJw', loginData)
 
-      currentUser = {email: response.data.email}
+      let currentUser = {email: response.data.email}
+
       props.getCurrentUser(currentUser)
+
     } catch (e) {
       console.log(e)
     }
   }
 
 
-  let addNewUserInBase = ""
 
   const registerHandler = async () => {
     const authData = {
@@ -62,14 +62,12 @@ const Auth = (props) => {
     }
     try {
       const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyALc3IJ5EUuz0HEBSvTYMqlj8mL-14rKJw', authData)
-
-      addNewUserInBase = {email: response.data.email}
+      let addNewUserInBase = {email: response.data.email}
       await axios.post('https://some-spa.firebaseio.com/users.json', addNewUserInBase)
     } catch (e) {
       console.log(e)
     }
   }
-
 
   return (
     <div className={classes.Auth}>
@@ -77,37 +75,47 @@ const Auth = (props) => {
         <div className={classes.escButton}>
           <NavLink to="/">X</NavLink>
         </div>
-        <h1>Авторизация</h1>
 
-        <form onSubmit={submitHandler} className={classes.AuthForm}>
-          <label htmlFor='login'>Введите E-mail:</label>
-          <input id='login' type="text" onChange={handleLogin} value={login}
-                 className={loginInputColor}/>
-
-          <label htmlFor='password'>Введите пароль:</label>
-          <input id='password' type="password" onChange={handlePassword} value={password}
-                 placeholder={"минимум 6 символов"} className={passwordInputColor}/>
-          <div className={classes.Buttons}>
-            <button
-              type="enter"
-              className={classes.enterButton}
-              disabled={!isFormValid}
-              onClick={loginHandler}
-            >
-              Войти
-            </button>
-
-
-            <button
-              type="register"
-              className={classes.registerButton}
-              disabled={!isFormValid}
-              onClick={registerHandler}
-            >
-              Регистрация
-            </button>
+        {props.isAuth === true
+          ? <div className={classes.authSuccess}>
+            <p>Вы авторизованы как: </p>
+            <p>{`${props.currentUser}`}</p>
           </div>
-        </form>
+          : <div>
+            <h1>Авторизация</h1>
+
+            <form onSubmit={submitHandler} className={classes.AuthForm}>
+              <label htmlFor='login'>Введите E-mail:</label>
+              <input id='login' type="text" onChange={handleLogin} value={login}
+                     className={loginInputColor}/>
+
+              <label htmlFor='password'>Введите пароль:</label>
+              <input id='password' type="password" onChange={handlePassword} value={password}
+                     placeholder={"минимум 6 символов"} className={passwordInputColor}/>
+              <div className={classes.Buttons}>
+                <button
+                  type="enter"
+                  className={classes.enterButton}
+                  disabled={!isFormValid}
+                  onClick={loginHandler}
+                >
+                  Войти
+                </button>
+
+
+                <button
+                  type="register"
+                  className={classes.registerButton}
+                  disabled={!isFormValid}
+                  onClick={registerHandler}
+                >
+                  Регистрация
+                </button>
+              </div>
+            </form>
+          </div>
+        }
+
       </div>
     </div>
   );
