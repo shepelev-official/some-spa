@@ -8,6 +8,7 @@ const Auth = (props) => {
 
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
+  const [newUser, setNewUser] = useState(false)
 
 
   const isPasswordValid = password.length >= 6
@@ -53,7 +54,6 @@ const Auth = (props) => {
   }
 
 
-
   const registerHandler = async () => {
     const authData = {
       email: login,
@@ -64,6 +64,7 @@ const Auth = (props) => {
       const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyALc3IJ5EUuz0HEBSvTYMqlj8mL-14rKJw', authData)
       let addNewUserInBase = {email: response.data.email}
       await axios.post('https://some-spa.firebaseio.com/users.json', addNewUserInBase)
+      setNewUser(true)
     } catch (e) {
       console.log(e)
     }
@@ -102,15 +103,16 @@ const Auth = (props) => {
                   Войти
                 </button>
 
-
-                <button
-                  type="register"
-                  className={classes.registerButton}
-                  disabled={!isFormValid}
-                  onClick={registerHandler}
-                >
-                  Регистрация
-                </button>
+                {newUser === false
+                  ? <button
+                    type="register"
+                    className={classes.registerButton}
+                    disabled={!isFormValid}
+                    onClick={registerHandler}
+                  >
+                    Регистрация
+                  </button>
+                  : null}
               </div>
             </form>
           </div>
